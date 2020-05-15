@@ -43,7 +43,7 @@ class UniversityOfMichigan: public University {
     virtual void chant() {
       return "Forever Go Blue!" << endl;
     }
-}
+};
 
 // the ":" shows that the HarvardUniversity class is derived from the parent class University
 class HarvardUniversity: public University {
@@ -54,7 +54,7 @@ class HarvardUniversity: public University {
     virtual void chant() {
       return "Michigan of the East!" << endl;
     }
-}
+};
 
 // the ":" shows that the CornellUniversity class is derived from the parent class University
 class CornellUniversity: public University {
@@ -65,7 +65,7 @@ class CornellUniversity: public University {
     virtual void chant() {
       return "We're the best Ivy!" << endl;
     }
-}
+};
 ```
 After seeing these three derived classes, a valid concern is to say, what is the point of polymorphism? We are still creating 3 separate classes and implementing different `chant()` functions for each. 
 
@@ -96,9 +96,9 @@ int main() {
 }
 
 OUTPUT:
-"Forever Go Blue!" // this is from UniversityOfMichigan
-"Michigan of the East!" // this is from HarvardUniversity
-"We're the best Ivy!" // this is from CornellUniversity 
+"Forever Go Blue!" // this is from UniversityOfMichigan's chant
+"Michigan of the East!" // this is from HarvardUniversity's chant
+"We're the best Ivy!" // this is from CornellUniversity's chant
 ```
 
 > `uni = &mich;` is allowed in polymorphism because this exhibits **upcasting**. More importantly, `UniversityOfMichigan` is-a `University`.
@@ -108,3 +108,71 @@ In this example, we have an object `uni`, which is of the `University` class (th
 The importance comes from the fact that each of these functions are still *named* the same `chant()`. Though we have completely different classes, we need not specify function names as `MichiganChant()`, `HarvardChant()`, etc. The advantages of this comes from working with these derived classes and only having to keep track of function and value names inside the base class. When we are given the object `uni` in our case, we do not know if it is of the `base` class `University` or if it is any of the `dervied` classes. But, because we are using polymorphism, we do not care. We expect `chant()` to always give the correct answer. For this small example, it may seem unneccessary, but in more complex applications polymorphism is a necessity. 
 
 > we use polymorphism every day without realizing. when we type `3 + 4.0`, we're assuming the `+` operator can adjust itself with different data types of `integer` and `float`. 
+
+## Types of Polymorphism
+There are two types of polymorphism:
+* dynamic polymorphism (run-time)
+* static polymorphism (compile-time)
+
+### Dynamic Polymorphism (Run-Time)
+
+
+### Static Polymorphism (Compile-Time)
+Static polymorphism usually refers to the fact of "method overloading", where function names are kept the same but their declarations (more specifically parameters) are different. For this to work, they have to satisfy at least one of three criteria:  
+- the number of parameters must be different: `func(int integer)` and `func(int integer, int integer1)`
+- the type of parameters are different: `func(int integer)` and `func(char c)`
+- the order of parameters are different **(not recommended)**
+
+example:
+let's say inside our `University` and our derived classes, we define another virtual void function named `chant(string position)`.
+```cpp
+class University {
+  ...
+    virtual void chant(string position) {
+      return "We are " + position + " in the world!" << endl;
+    }
+}; // don't forget this semicolon
+
+class UniversityOfMichigan: public University {
+  ...
+    virtual void chant(string position) {
+      return "UMich is " + position + " in the world!" << endl;
+    }
+};
+
+class HarvardUniversity: public University {
+  ...
+    virtual void chant(string position) {
+      return "Harvard is " + position + " in the world!" << endl;
+    }
+};
+
+... // do the same for CornellUniversity
+```
+
+then, in our main function, we can differentiate between which function we want to call. 
+```cpp
+int main() {
+  ...
+  uni = &mich;
+  uni->chant();
+  uni->chant("1st");
+
+  uni = &harvard;
+  uni->chant();
+  uni->chant("2nd");
+
+  uni = &cornell;
+  uni->chant();
+  uni->chant("3rd");
+}
+
+OUTPUT:
+"Forever Go Blue!" // this is from UniversityOfMichigan's chant
+"UMich is 1st in the world!" // UniversityOfMichigan's chant(string position);
+"Michigan of the East!" // this is from HarvardUniversity's chant
+"Harvard is 2nd in the world!" // HarvardUniversity's chant(string position);
+"We're the best Ivy!" // this is from CornellUniversity's chant
+"Cornell is 3rd in the world!" // CornellUniversity's chant(string position);
+```
+With static polymporphism, the program analyzes the arguemnts that are passed in and then can make the decision on which function `chant` to call. 
