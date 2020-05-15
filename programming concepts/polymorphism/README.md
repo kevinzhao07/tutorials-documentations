@@ -115,7 +115,7 @@ There are two types of polymorphism:
 * static polymorphism (compile-time)
 
 ### Dynamic Polymorphism (Run-Time)
-
+// todo
 
 ### Static Polymorphism (Compile-Time)
 Static polymorphism usually refers to the fact of "method overloading", where function names are kept the same but their declarations (more specifically parameters) are different. For this to work, they have to satisfy at least one of three criteria:  
