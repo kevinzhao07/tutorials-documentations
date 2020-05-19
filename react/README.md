@@ -1,0 +1,2 @@
+# React
+React is a popular JavaScript library for building beautiful user interfaces resulting in smooth user experiences. It is able to update and render elements based on data changes on any application. React focuses on seeing elements as components keeping track of their own data and states, then seamlessly incorporating the changes into the front-end for users. 
