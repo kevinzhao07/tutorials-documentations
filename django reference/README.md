@@ -12,7 +12,7 @@ Python commands are necessary to test and run Django. Make sure you have the lat
 > will either display `No changes detected` or show which new models were made. (if database was previous created)  
 
 **Apply migrations onto database**: `python manage.py migrate`  
-> will also work if no database was created, and will create a simple database structure to start with. in our project, our `authuser` table exists.
+> will also work if no database was created, and will create a database structure to start. in our project, our `authuser` table exists.
 
 **See SQL code represented from out database**: `python manage.py sqlmigrate [APPNAME] [MIGRATION NUMBER]`   
 **Run python-django shell**: `python manage.py shell`  
