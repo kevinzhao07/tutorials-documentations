@@ -6,14 +6,9 @@ Python commands are necessary to test and run Django. Make sure you have the lat
 **Run our program**: `python manage.py runserver`  
 **Create new app**: `python manage.py startapp [APPNAME]`  
 **Create a user to log into `/admin`**: `python manage.py createsuperuser`  
-> make sure a database has already been created, so migrations will allow us to make changes.  
-
 **Run migrations on database**: `python manage.py makemigrations`
 > will either display `No changes detected` or show which new models were made. (if database was previous created)  
-
 **Apply migrations onto database**: `python manage.py migrate`  
-> will also work if no database was created, and will create a database structure to start. in our project, our `authuser` table exists.
-
 **See SQL code represented from out database**: `python manage.py sqlmigrate [APPNAME] [MIGRATION NUMBER]`   
 **Run python-django shell**: `python manage.py shell`  
 **Query all users from a model**: `[MODEL NAME].objects.all()` 
